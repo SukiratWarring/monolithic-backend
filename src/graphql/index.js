@@ -1,24 +1,23 @@
 import { ApolloServer } from "@apollo/server";
-
+import { Customer } from "./customer/index.js";
 export const creatingGraphqlServer = async () => {
   const server = new ApolloServer({
     typeDefs: `
-      ${User.UserTypeDefs}
+       ${Customer.CustomerTypeDefs}
       type Query {
-          ${User.UserQuery}
+          ${Customer.CustomerQuery}
        }
   
        type Mutation {
-          ${User.UserMutation}
+          ${Customer.CustomerMutation}
        }    
       `,
     resolvers: {
-      ...User.UserResolver.custom,
       Query: {
-        ...User.UserResolver.queries,
+        ...Customer.CustomerResolver.queries,
       },
       Mutation: {
-        ...User.UserResolver.mutations,
+        ...Customer.CustomerResolver.mutations,
       },
     },
   });

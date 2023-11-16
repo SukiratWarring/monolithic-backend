@@ -6,7 +6,6 @@ const dataSchema = new Schema(
   {
     email: String,
     password: String,
-    salt: String,
     phone: String,
     address: [{ type: Schema.Types.ObjectId, ref: "address", require: true }],
     cart: [
