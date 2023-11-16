@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const dataSchema = new Schema(
   {
-    email: String,
+    emailId: { type: String, unique: true, required: true },
     password: String,
     phone: String,
     address: [{ type: Schema.Types.ObjectId, ref: "address", require: true }],

@@ -16,19 +16,26 @@ type Product{
     available: Boolean,
     suplier: String,
 }
-type Customer{
-    firstName: String!,
-    lastName: String,
-    password:String!,
-    emailId: String!,
-    address:[AddressType],
-    wishlist:[Product]
+type Customer {
+  _id: ID!
+  emailId: String!
+  phone: String
+  address: [AddressType!]!
+  cart: [Product!]!
+  wishlist: [Product!]!
+  orders: [Product!]!
+  createdAt: String!
+  updatedAt: String!
 }
-input CreateCustomerInput{
+input SignUpInput{
     firstName: String!,
     lastName: String,
     password:String!,
     emailId: String!,
+}
+input SignInInput{
+    emailId:String!,
+    password:String!
 }
 input AddressTypeInput{
     street: String!,

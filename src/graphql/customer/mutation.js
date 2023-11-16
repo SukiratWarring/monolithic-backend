@@ -1,6 +1,5 @@
 export const CustomerMutation = `#graphql
-createCustomer(input:CreateCustomerInput):Customer
-createAddress(input:AddressTypeInput):AddressType
-addWishlistItem(input:ProductInput):Product
+signUp(input:SignUpInput!):String
+addNewAddress(input:AddressTypeInput):String
 addCartItem(input:ProductInput):Product
 `;
