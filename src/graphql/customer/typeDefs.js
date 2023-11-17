@@ -5,7 +5,10 @@ type AddressType{
     city: String!,
     country: String!,
 }
-
+type Cart {
+  product: Product!
+  unit: Int!
+}
 type Product{
     name: String,
     desc: String,
@@ -16,14 +19,23 @@ type Product{
     available: Boolean,
     suplier: String,
 }
+type Order{
+    orderId: String,
+    customerId: String,
+    amount: Int,
+    status: String,
+    txnId: String,
+    items:[Cart]
+}
 type Customer {
   _id: ID!
   emailId: String!
   phone: String
-  address: [AddressType!]!
-  cart: [Product!]!
-  wishlist: [Product!]!
-  orders: [Product!]!
+  address: [AddressType]!
+  cart: [Cart]!
+  wishlist: [Product]!
+  orders: [Order]!
+
   createdAt: String!
   updatedAt: String!
 }

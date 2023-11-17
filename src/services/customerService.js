@@ -1,4 +1,7 @@
 import { CustomerModel } from "../Models/CustomerModel.js";
+import { ProductModel } from "../Models/ProductModel.js";
+import { OrderModel } from "../Models/OrderModel.js";
+// import {}
 import { createHmac } from "node:crypto";
 import jwt from "jsonwebtoken";
 import { AddressModel } from "../Models/AddressModel.js";
@@ -86,6 +89,61 @@ export class CustomerService {
     } catch (error) {
       console.log("error", error);
       return error;
+    }
+  }
+  static async getCustomerById(payload) {
+    console.log("payload", payload);
+    try {
+      const { emailId } = payload;
+      const existingUser = await CustomerModel.findOne({
+        emailId: emailId,
+      })
+        .populate("address")
+        .populate("wishlist")
+        .populate("orders")
+        .populate("cart.product");
+      if (existingUser) {
+        return existingUser;
+      } else {
+        throw new Error("No document with particular email found!");
+      }
+    } catch (error) {
+      console.log("error", error);
+      return error;
+    }
+  }
+  static async getWhishlistOfCustomer(payload) {
+    const { customerId } = payload;
+    try {
+      const user = await CustomerModel.findById(customerId).populate(
+        "wishlist"
+      );
+      if (user) {
+        return user.wishlist;
+      } else {
+        throw new Error("No user with particular ID!");
+      }
+    } catch (error) {
+      console.log("error", error);
+      throw new Error(error);
+    }
+  }
+  static async addWishListForCustomer(payload) {
+    const { customerId, input } = payload;
+    console.log("payload", customerId, input);
+    try {
+      const customer = await CustomerModel.findById(customerId).populate(
+        "wishlist"
+      );
+      if (!customer) {
+        throw new Error("No Custoemr with this id Found");
+      }
+      if (customer.wishlist.length > 0) {
+      } else {
+      }
+    } catch (error) {
+      console.log("error", error);
+      throw new Error(error);
     }
   }
 }
