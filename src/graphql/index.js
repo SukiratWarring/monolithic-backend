@@ -8,6 +8,7 @@ export const creatingGraphqlServer = async () => {
        ${Product.ProductTypeDefs}
       type Query {
           ${Customer.CustomerQuery}
+          ${Product.ProductQuery}
        }
        type Mutation {
           ${Customer.CustomerMutation}
