@@ -10,6 +10,7 @@ type Cart {
   unit: Int!
 }
 type Product{
+    _id:ID!
     name: String,
     desc: String,
     banner: String,

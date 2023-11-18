@@ -128,22 +128,33 @@ export class CustomerService {
       throw new Error(error);
     }
   }
+  //incomplete
   static async addWishListForCustomer(payload) {
     const { customerId, input } = payload;
     console.log("payload", customerId, input);
     try {
-      const customer = await CustomerModel.findById(customerId).populate(
-        "wishlist"
-      );
+      const customer = await CustomerModel.findById(customerId);
+      console.log("customer", customer);
+
       if (!customer) {
         throw new Error("No Custoemr with this id Found");
       }
+      console.log("customer.wishlist.length", customer.wishlist);
+
       if (customer.wishlist.length > 0) {
+        console.log("hhhhe");
       } else {
+        customer.wishlist.push(input);
       }
+      const res = await customer.save();
+      return res.wishlist;
     } catch (error) {
       console.log("error", error);
       throw new Error(error);
     }
   }
+  //incomplete
+  static async addCartItemToCustomer(payload) {}
+  //incomplete
+  static async addOrderToCustomer(payload) {}
 }

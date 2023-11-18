@@ -28,6 +28,8 @@ const mutations = {
   },
   addWishList: async (_, payload) => {
     const res = await CustomerService.addWishListForCustomer(payload);
+    console.log("res", res);
+
     return res;
   },
 };
